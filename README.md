@@ -10,12 +10,13 @@ To build React front-end run
 
 To initialise database from the GB.tsv files
 
+'''
 $ cd ./server/db
 $ sqlite3 geo.db
 sqlite> create table geo (geonameid text, name text, asciiname text, alternatenames text);
 sqlite> .separator "\t"
 sqlite> .import ../data/GB.tsv geo
-
+'''
 
 To run application locally run
 
