@@ -28,7 +28,8 @@
     "eject": "react-scripts eject",
     "start-server": "nodemon server/server.js --watch server/*",
     "start-front": "react-scripts start",
-    "start": "concurrently \"npm run start-server\" \"npm run start-front\" --kill-others --kill-others-on-fail",
+    "start-both": "concurrently \"npm run start-server\" \"npm run start-front\" --kill-others --kill-others-on-fail",
+    "start": "node server/server.js",
     "test": "react-scripts test --env=jsdom"
   },
   "eslintConfig": {
