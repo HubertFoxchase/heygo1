@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './App.css';
 
-const API_URL = "http://localhost:4001/locations?q="; // you should replace this with yours
+const API_URL = "/locations?q="; // you should replace this with yours
 
 
 function App() {
