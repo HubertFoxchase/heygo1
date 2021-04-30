@@ -10,15 +10,17 @@ function App() {
   const [location, setLocation] = useState("");
 
   useEffect(() => {
-    fetch(API_URL + location)
-      .then(res => {
-        return res.ok ? res.json() : [];
-      })
-      .then(res => {
-        setLocations(res);
-      }).catch(err => {
-        setLocations([]);
-      });
+    if (location && location.length > 1) {
+      fetch(API_URL + location)
+        .then(res => {
+          return res.ok ? res.json() : [];
+        })
+        .then(res => {
+          setLocations(res);
+        }).catch(err => {
+          setLocations([]);
+        });
+      }
   }, [location]);
 
   return (
@@ -27,11 +29,13 @@ function App() {
         <input name="text" type="text" placeholder="Search for location (min 2 chars)" value={location} onChange={e => setLocation(e.target.value)} />
       </div>
       {locations.length > 0 ? (<p>Found: {locations.length}</p>) : ""}
-      <ul>
-        {locations.map(item => (
-          <li>{item}</li>
-        ))}
-      </ul>
+      <div className="scrollable">
+        <ul>
+          {locations.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
