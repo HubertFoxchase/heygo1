@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from "react";
 import './App.css';
 
+const API_URL = "http://localhost:4001/locations?q="; // you should replace this with yours
+
+
 function App() {
+
+  const [locations, setLocations] = useState([]);
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    fetch(API_URL + location)
+      .then(res => {
+        return res.ok ? res.json() : [];
+      })
+      .then(res => {
+        setLocations(res);
+      }).catch(err => {
+        setLocations([]);
+      });
+  }, [location]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div className="search">
+        <input name="text" type="text" placeholder="Search for location (min 2 chars)" value={location} onChange={e => setLocation(e.target.value)} />
+      </div>
+      {locations.length > 0 ? (<p>Found: {locations.length}</p>) : ""}
+      <ul>
+        {locations.map(item => (
+          <li>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
