@@ -11,11 +11,11 @@ To build React front-end run
 To initialise database from the GB.tsv files
 
 ```
-$ cd ./server/db
-$ sqlite3 geo.db
-sqlite> create table geo (geonameid text, name text, asciiname text, alternatenames text);
+
+$ sqlite3 ./server/db/geo.db
+sqlite> create virtual table geo1 using fts4(geonameid text, name text, asciiname text, alternatenames text);
 sqlite> .separator "\t"
-sqlite> .import ../data/GB.tsv geo
+sqlite> .import ./server/data/GB.tsv geo1
 ```
 
 To run application locally run
@@ -30,4 +30,9 @@ You can also view the deployed version on Heruku https://heygo-test-ml.herokuapp
 # Implementation details
 
 Application runs on Express server and uses sqlite to store location data.
-Both API and React front-end run from the same Express application. The API is mapped into the /locations folder while React app "leaves" at the root.
+
+Both API and React front-end run from the same Express application.
+
+The API is mapped into the /locations folder while React app is mapped into root /.
+
+For a larger API, I'd consider using ORM such as knex, put routes into a separate file and implement controllers for a cleaner code and maintainability. However, for the purpose of the exercise, I think the "lean" solution is fine.

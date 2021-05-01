@@ -19,12 +19,6 @@ let db = new sqlite3.Database('./server/db/geo.db', sqlite3.OPEN_READONLY, (err)
   }
 });
 
-// geonameid	name	asciiname	alternatenames
-// create table geo (geonameid text, name text, asciiname text, alternatenames text);
-// sqlite> create table geo (geonameid text, name text, asciiname text, alternatenames text);
-// sqlite> .separator "\t"
-// sqlite> .import ../GB.tsv geo
-
 app.get('/locations', (req,res) => {
 
   let q = req.query.q;

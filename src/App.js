@@ -20,7 +20,9 @@ function App() {
         }).catch(err => {
           setLocations([]);
         });
-      }
+    } else {
+      setLocations([]);
+    }
   }, [location]);
 
   return (
@@ -32,7 +34,7 @@ function App() {
       <div className="scrollable">
         <ul>
           {locations.map(item => (
-            <li>{item}</li>
+            <li><span>{item.substring(0, location.length)}</span>{item.substr(location.length)}</li>
           ))}
         </ul>
       </div>
