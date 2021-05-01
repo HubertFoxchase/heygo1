@@ -13,9 +13,9 @@ To initialise database from the GB.tsv files
 ```
 
 $ sqlite3 ./server/db/geo.db
-sqlite> create virtual table geo1 using fts4(geonameid text, name text, asciiname text, alternatenames text);
+sqlite> create table geo(geonameid text, name text, asciiname text, alternatenames text);
 sqlite> .separator "\t"
-sqlite> .import ./server/data/GB.tsv geo1
+sqlite> .import ./server/data/GB.tsv geo
 ```
 
 To run application locally run
