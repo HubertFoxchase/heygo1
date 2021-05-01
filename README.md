@@ -13,7 +13,7 @@ To initialise database from the GB.tsv files
 ```
 
 $ sqlite3 ./server/db/geo.db
-sqlite> create table geo(geonameid text, name text, asciiname text, alternatenames text);
+sqlite> create table geo (geonameid text, name text, asciiname text, alternatenames text);
 sqlite> .separator "\t"
 sqlite> .import ./server/data/GB.tsv geo
 ```
